@@ -42,7 +42,8 @@ Please refer to [demo.json](./demo.json).
  - Windows 10 Enterprise LTSB with node.js 6.10.1
 
 ## History
+ - 3.0.0 - November 2019 : repack
  - 1.1.5 - October 2017 : Initial Release
 
 ## License
-Copyright 2017 ADVANTECH Corp. under [the Apache 2.0 license](LICENSE).
+Copyright 2019 ADVANTECH Corp. under [the Apache 2.0 license](LICENSE).
