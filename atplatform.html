@@ -1,0 +1,95 @@
+<!--
+  Copyright JS Foundation and other contributors, http://js.foundation
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!-- Sample html file that corresponds to the 99-sample.js file              -->
+<!-- This creates and configures the onscreen elements of the node           -->
+
+<!-- If you use this as a template, update the copyright with your own name. -->
+
+<!-- First, the content of the edit dialog is defined.                       -->
+<script type="text/x-red" data-template-name="atplatform">
+    <p>Select one item to get platform information.</p>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
+        <select type="text" id="node-input-topic" style="width: 200px;">
+            <option value="From payload">From msg.payload</option>
+            <option value="All">All</option>
+            <option value="ModuleID">Module ID</option>
+            <option value="BIOSVer">BIOS Version</option>
+            <option value="ECVer">EC Version</option>
+            <option value="OSVer">OS Version</option>
+            <option value="CPUName">CPU Model Name</option>
+            <option value="MemAvail">Available Memory</option>
+            <option value="diskInfo">Disk information</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<!-- Next, some simple help text is provided for the node.                   -->
+<script type="text/x-red" data-help-name="atplatform">
+    <!-- data-help-name identifies the node type this help is for             -->
+    <!-- This content appears in the Info sidebar when a node is selected     -->
+    <!-- The first <p> is used as the pop-up tool tip when hovering over a    -->
+    <!-- node in the palette.                                                 -->
+    <p>The full output is an object called <code>msg</code> containing <code>msg.payload</code> with platform attributes as follows</p>
+    <p>
+        <code>msg.payload.ModuleID</code>: Module ID<br/>
+        <code>msg.payload.BIOSVer</code>: BIOS Version<br/>
+        <code>msg.payload.ECVer</code>: EC Version<br/>
+        <code>msg.payload.OSVer</code>: OS Version<br/>
+        <code>msg.payload.CPUName</code>: CPU Model Name<br/>
+        <code>msg.payload.MemAvail</code>: Available Memory<br/>
+        <code>msg.payload.diskInfo</code>: Disk and partition information<br/>
+    </p>
+    <p>
+        You can choose a topic to get the data you need. <br />
+        This topic can also be set by inputting a message with {"attribute name": true} in <code>msg.payload</code>. <br />
+        The Input format is the same with the output format. <br />
+    </p>
+    <p>
+        Example:<br />
+        If you want to get BIOS version, inject a string like <code>msg.payload = {BIOSVer: true}</code><br />
+        The output string--<code>msg.payload.BIOSVer</code> is the value you get.<br />
+    </p>
+</script>
+
+<!-- Finally, the node type is registered along with all of its properties   -->
+<!-- The example below shows a small subset of the properties that can be set-->
+<script type="text/javascript">
+    RED.nodes.registerType('atplatform',{
+        category: 'Advantech IIoT',      // the palette category
+        defaults: {
+            topic: {value: "From payload"},
+            name: {value:""}
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        // set the icon (held in icons dir below where you save the node)
+        icon: "white-globe.png",     // saved in  icons/myicon.png
+		color: "#0059aa",
+		paletteLabel: "Platform",
+        label: function() {
+            return this.name || "Platform";
+        },
+        labelStyle: function() {
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>
