@@ -44,7 +44,8 @@ Please refer to [demo.json](./demo.json).
  - Windows 10 Enterprise LTSC with node.js 18.14.1
 
 ## History
- - 3.0.1 - June 2023 : update bundleDependencies
+ - 4.0.1 - June 2023 : update bundleDependencies
+ - 3.2.0 - June 2020 : Add network functions
  - 1.1.5 - October 2017 : Initial Release
 
 ## License
